@@ -6,6 +6,28 @@
 
     <TextView
         android:layout_width="wrap_content"
+        android:text="Name:"
+        android:layout_height="wrap_content"
+        />
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Age:"
+        android:layout_height="wrap_content"
+        />
+
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gender:"
         android:textColor="@android:color/black"
@@ -69,7 +91,9 @@
         android:id="@+id/bDetails"
         android:layout_width="match_parent"
         android:text="SAVE"
-        android:textColor="@android:color/holo_purple"
+        android:textColor="@android:color/holo_blue_dark"
+        style="@android:style/Widget.Button"
+        android:textAllCaps="true"
         android:layout_height="wrap_content" />
 
 

@@ -73,5 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SAVE"
-        android:textColor="@android:color/holo_purple" />
+        style="@android:style/Widget.Button"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_blue_dark" />
 </LinearLayout>
