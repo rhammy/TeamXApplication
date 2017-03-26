@@ -15,6 +15,7 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     public static final String PERSON_TABLE_NAME = "users";
     public static final String PERSON_COLUMN_USERNAME = "username";
+    public static final String PERSON_COLUMN_PWD = "password";
     public static final String PERSON_COLUMN_NAME = "name";
     public static final String PERSON_COLUMN_GENDER = "gender";
     public static final String PERSON_COLUMN_AGE = "age";
@@ -31,9 +32,13 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + PERSON_TABLE_NAME + "(" +
                 PERSON_COLUMN_USERNAME + " VARCHAR(20) PRIMARY KEY, " +
+                PERSON_COLUMN_PWD + "TEXT," +
                 PERSON_COLUMN_NAME + " TEXT, " +
                 PERSON_COLUMN_GENDER + " TEXT, " +
-                PERSON_COLUMN_AGE + " INTEGER)"
+                PERSON_COLUMN_AGE + " INTEGER," +
+                PERSON_COLUMN_LOCATION + "TEXT," +
+                PERSON_COLUMN_SCHOOL + "TEXT," +
+                PERSON_COLUMN_EMAIL + "TEXT)"
         );
     }
 
@@ -42,29 +47,43 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPerson(String name, String gender, int age, String location, String schoolType, String email) {
+    public boolean insertPerson(String username, String pwd,String name,  String gender, int age, String location, String schoolType, String email) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(PERSON_COLUMN_USERNAME, username);
+        contentValues.put(PERSON_COLUMN_PWD, pwd);
         contentValues.put(PERSON_COLUMN_NAME, name);
         contentValues.put(PERSON_COLUMN_GENDER, gender);
         contentValues.put(PERSON_COLUMN_AGE, age);
         contentValues.put(PERSON_COLUMN_LOCATION, location);
         contentValues.put(PERSON_COLUMN_SCHOOL, schoolType);
         contentValues.put(PERSON_COLUMN_EMAIL, email);
-        db.insert(PERSON_TABLE_NAME, null, contentValues);
-        return true;
+        long result = db.insert(PERSON_TABLE_NAME, null, contentValues);
+        if (result == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
-    public boolean updatePerson(String id, String name, String gender, int age, String location, String schoolType, String email) {
+    public boolean updatePerson(String username, String pwd, String name, String gender, int age, String location, String schoolType, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(PERSON_COLUMN_USERNAME, username);
+        contentValues.put(PERSON_COLUMN_PWD, pwd);
         contentValues.put(PERSON_COLUMN_NAME, name);
         contentValues.put(PERSON_COLUMN_GENDER, gender);
         contentValues.put(PERSON_COLUMN_AGE, age);
         contentValues.put(PERSON_COLUMN_LOCATION, location);
         contentValues.put(PERSON_COLUMN_SCHOOL, schoolType);
         contentValues.put(PERSON_COLUMN_EMAIL, email);
-        db.update(PERSON_TABLE_NAME, contentValues, PERSON_COLUMN_USERNAME + " = ? ", new String[] { id } );
-        return true;
+        long result = db.update(PERSON_TABLE_NAME, contentValues, PERSON_COLUMN_USERNAME + " = ? ", new String[] { username } );
+        if (result == -1){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
     public Cursor getPerson(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
