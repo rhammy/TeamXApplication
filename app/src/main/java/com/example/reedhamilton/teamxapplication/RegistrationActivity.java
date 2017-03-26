@@ -47,7 +47,7 @@ public class RegistrationActivity extends Activity{
                     Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(RegistrationActivity.this, "Something went wrong.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
                 }
             }
         });

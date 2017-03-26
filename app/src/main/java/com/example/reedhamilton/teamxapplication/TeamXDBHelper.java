@@ -11,16 +11,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class TeamXDBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "SQLiteUsers.db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "Different.db";
+    private static final int DATABASE_VERSION = 2;
     public static final String PERSON_TABLE_NAME = "users";
     public static final String PERSON_COLUMN_USERNAME = "username";
-    public static final String PERSON_COLUMN_PWD = "password";
+    public static final String PERSON_COLUMN_PASSWORD = "password";
     public static final String PERSON_COLUMN_NAME = "name";
     public static final String PERSON_COLUMN_GENDER = "gender";
     public static final String PERSON_COLUMN_AGE = "age";
     public static final String PERSON_COLUMN_LOCATION = "location";
-    public static final String PERSON_COLUMN_SCHOOL = "school type";
+    public static final String PERSON_COLUMN_SCHOOL = "school";
     public static final String PERSON_COLUMN_EMAIL = "email";
 
 
@@ -30,15 +30,15 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + PERSON_TABLE_NAME + "(" +
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + PERSON_TABLE_NAME + "(" +
                 PERSON_COLUMN_USERNAME + " VARCHAR(20) PRIMARY KEY, " +
-                PERSON_COLUMN_PWD + "TEXT," +
+                PERSON_COLUMN_PASSWORD + " TEXT, " +
                 PERSON_COLUMN_NAME + " TEXT, " +
                 PERSON_COLUMN_GENDER + " TEXT, " +
-                PERSON_COLUMN_AGE + " INTEGER," +
-                PERSON_COLUMN_LOCATION + "TEXT," +
-                PERSON_COLUMN_SCHOOL + "TEXT," +
-                PERSON_COLUMN_EMAIL + "TEXT)"
+                PERSON_COLUMN_AGE + " INTEGER, " +
+                PERSON_COLUMN_LOCATION + " TEXT, " +
+                PERSON_COLUMN_SCHOOL + " TEXT, " +
+                PERSON_COLUMN_EMAIL + " TEXT);"
         );
     }
 
@@ -47,11 +47,11 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPerson(String username, String pwd,String name,  String gender, int age, String location, String schoolType, String email) {
+    public boolean insertPerson(String username, String pwd , String name,  String gender, int age, String location, String schoolType, String email) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PERSON_COLUMN_USERNAME, username);
-        contentValues.put(PERSON_COLUMN_PWD, pwd);
+        contentValues.put(PERSON_COLUMN_PASSWORD, pwd);
         contentValues.put(PERSON_COLUMN_NAME, name);
         contentValues.put(PERSON_COLUMN_GENDER, gender);
         contentValues.put(PERSON_COLUMN_AGE, age);
@@ -70,7 +70,7 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(PERSON_COLUMN_USERNAME, username);
-        contentValues.put(PERSON_COLUMN_PWD, pwd);
+        contentValues.put(PERSON_COLUMN_PASSWORD, pwd);
         contentValues.put(PERSON_COLUMN_NAME, name);
         contentValues.put(PERSON_COLUMN_GENDER, gender);
         contentValues.put(PERSON_COLUMN_AGE, age);
