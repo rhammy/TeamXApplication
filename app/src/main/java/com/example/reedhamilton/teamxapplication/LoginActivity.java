@@ -17,7 +17,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText user_name;
     EditText password;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +35,18 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user = user_name.getText().toString();
                 String pwd = password.getText().toString();
-                boolean yes = DB.CheckIsDataAlreadyInDBorNot("username",user);
+                boolean yes = DB.getPerson(user);
                 if (yes == true){
-                    boolean yesyes = DB.CheckIsDataAlreadyInDBorNot("password", pwd);
+                    boolean yesyes = DB.getPassword(pwd);
                     if (yesyes == true){
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                         Intent boom = new Intent(LoginActivity.this,ResultsActivity.class);
+                        Bundle bundle = new Bundle();
+                        String gold = user_name.getText().toString();
+                        String key = password.getText().toString();
+                        bundle.putString("username",gold);
+                        bundle.putString("password",key);
+                        boom.putExtras(bundle);
                         startActivity(boom);
                     }
                     else {

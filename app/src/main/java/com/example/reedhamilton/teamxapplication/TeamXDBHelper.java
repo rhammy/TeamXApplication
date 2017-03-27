@@ -85,26 +85,33 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Cursor getPerson(String id) {
+
+    public boolean getPerson(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "SELECT * FROM " + PERSON_TABLE_NAME + " WHERE " +
                 PERSON_COLUMN_USERNAME + "=?", new String[] { id } );
-        return res;
+        if(res.getCount() <= 0){
+            res.close();
+            return false;
+        }
+        res.close();
+        return true;
     }
+    public boolean getPassword(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery( "SELECT * FROM " + PERSON_TABLE_NAME + " WHERE " +
+                PERSON_COLUMN_PASSWORD + "=?", new String[] { id } );
+        if(res.getCount() <= 0){
+            res.close();
+            return false;
+        }
+        res.close();
+        return true;
+    }
+
     public Cursor getAllPersons() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "SELECT * FROM " + PERSON_TABLE_NAME, null );
         return res;
-    }
-    public boolean CheckIsDataAlreadyInDBorNot(String column, String fieldValue) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String Query = "Select * from " + PERSON_TABLE_NAME + " where " + column + " = " + fieldValue;
-        Cursor cursor = db.rawQuery(Query, null);
-        if(cursor.getCount() <= 0){
-            cursor.close();
-            return false;
-        }
-        cursor.close();
-        return true;
     }
 }

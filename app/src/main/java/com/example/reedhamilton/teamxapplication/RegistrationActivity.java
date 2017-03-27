@@ -1,5 +1,6 @@
 package com.example.reedhamilton.teamxapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
@@ -15,7 +16,7 @@ public class RegistrationActivity extends Activity{
 
     TeamXDBHelper usersDB;
     Button regUser;
-    EditText userName, pwd, eMail;
+    EditText userName, pwd, confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class RegistrationActivity extends Activity{
         usersDB = new TeamXDBHelper(this);
         userName = (EditText) findViewById(R.id.etUsername);
         pwd = (EditText) findViewById(R.id.etPassword);
-        eMail = (EditText) findViewById(R.id.eteMail);
+        confirm = (EditText) findViewById(R.id.etConfirm);
 
         addData();
 
@@ -38,13 +39,15 @@ public class RegistrationActivity extends Activity{
             public void onClick(View v) {
                 String user = userName.getText().toString();
                 String password = pwd.getText().toString();
-                String email = eMail.getText().toString();
+                String pwd2 = confirm.getText().toString();
                 String blank = null;
+                boolean pwd = password.equals(new String(pwd2));
+                boolean register = usersDB.insertPerson(user,password,blank,blank,0,blank,blank,blank);
 
-                boolean register = usersDB.insertPerson(user,password,blank,blank,0,blank,blank,email);
-
-                if (register == true){
+                if (register == true && pwd == true ){
                     Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                    Intent toy = new Intent(RegistrationActivity.this,LoginActivity.class);
+                    startActivity(toy);
                 }
                 else {
                     Toast.makeText(RegistrationActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();

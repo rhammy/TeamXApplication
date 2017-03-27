@@ -26,7 +26,7 @@
         />
 
     <Button
-        android:id="@+id/bDetails"
+        android:id="@+id/bDeets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
