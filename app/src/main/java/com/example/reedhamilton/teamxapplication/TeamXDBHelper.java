@@ -96,4 +96,15 @@ public class TeamXDBHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery( "SELECT * FROM " + PERSON_TABLE_NAME, null );
         return res;
     }
+    public boolean CheckIsDataAlreadyInDBorNot(String column, String fieldValue) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Query = "Select * from " + PERSON_TABLE_NAME + " where " + column + " = " + fieldValue;
+        Cursor cursor = db.rawQuery(Query, null);
+        if(cursor.getCount() <= 0){
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
 }
