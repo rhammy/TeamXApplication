@@ -42,15 +42,20 @@ public class RegistrationActivity extends Activity{
                 String pwd2 = confirm.getText().toString();
                 String blank = null;
                 boolean pwd = password.equals(new String(pwd2));
-                boolean register = usersDB.insertPerson(user,password,blank,blank,0,blank,blank,blank);
 
-                if (register == true && pwd == true ){
-                    Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                    Intent toy = new Intent(RegistrationActivity.this,LoginActivity.class);
-                    startActivity(toy);
+                if (pwd == true ){
+                    boolean register = usersDB.insertPerson(user,password,blank,blank,0,blank,blank,blank);
+                    if(register == true) {
+                        Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                        Intent toy = new Intent(RegistrationActivity.this, LoginActivity.class);
+                        startActivity(toy);
+                    }
+                    else{
+                        Toast.makeText(RegistrationActivity.this, "That username is taken.", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else {
-                    Toast.makeText(RegistrationActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Passwords don't match.", Toast.LENGTH_LONG).show();
                 }
             }
         });

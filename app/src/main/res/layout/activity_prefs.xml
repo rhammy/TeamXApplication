@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="95dp"
-        android:text="Course Type"
+        android:text="School Type"
         android:textSize="20sp" />
 
     <RatingBar
@@ -68,7 +68,7 @@
         />
 
     <Button
-        android:id="@+id/bPreferences"
+        android:id="@+id/bSavePrefs"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
