@@ -4,13 +4,7 @@
     android:padding="10dp"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etResultDisplay"
-        android:layout_width="251dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="53dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="100dp" />
+
 
     <Button
         android:id="@+id/bResultCalc"
@@ -22,7 +16,15 @@
         android:text="Calculate Results"
         style="@android:style/Widget.Holo.Button.Inset"
         android:textAllCaps="true"
-        android:layout_marginBottom="150dp"
+        />
+    <TextView
+        android:id="@+id/etResultDisplay"
+        android:layout_width="295dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1.01"
         />
 
     <Button

@@ -20,16 +20,12 @@ public class ResultsActivity extends Activity {
     float emp_v;
     float sch_v;
     float cst_v;
-    public boolean dirt;
-    public boolean clean;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        clean = false;
-        dirt = false;
         deets();
         pref();
         calculate();
@@ -41,24 +37,11 @@ public class ResultsActivity extends Activity {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(clean == true && dirt != true){
-                    Toast.makeText(ResultsActivity.this, "Details must be entered", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                else if(clean != true && dirt == true){
-                    Toast.makeText(ResultsActivity.this, "Preferences must be entered", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                else if(clean == false && dirt == false){
-                    Toast.makeText(ResultsActivity.this, "Preferences and Details must be entered", Toast.LENGTH_LONG).show();
-                    return;
-                }
                 Bundle bun = getIntent().getExtras();
                 loc_v = bun.getFloat("location");
                 emp_v = bun.getFloat("employment");
                 sch_v = bun.getFloat("school");
                 cst_v = bun.getFloat("cost");
-                Toast.makeText(ResultsActivity.this, "Computing..... beep boop bop", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -78,7 +61,6 @@ public class ResultsActivity extends Activity {
         prefs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clean = true;
                 Intent dirt = new Intent(ResultsActivity.this, PreferencesActivity.class);
                 startActivity(dirt);
             }
@@ -89,7 +71,6 @@ public class ResultsActivity extends Activity {
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dirt = true;
                 Bundle bundle = getIntent().getExtras();
                 String user_name = bundle.getString("username");
                 String pwd = bundle.getString("password");
