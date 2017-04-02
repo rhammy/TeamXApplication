@@ -6,29 +6,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="Name"
-            android:layout_height="wrap_content"
-            />
-
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Age"
-            android:layout_height="wrap_content"
-            />
-
-        <EditText
-            android:id="@+id/etAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Username"
+            android:text="Username:"
             android:layout_height="wrap_content"
             />
         <EditText
@@ -38,7 +16,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="Password"
+            android:text="Password:"
             android:layout_height="wrap_content" />
 
         <EditText
@@ -47,11 +25,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Confirm Password:"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etConfirm"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:layout_marginTop="10dp"
-            android:id="@+id/bLogin"
+            android:id="@+id/bReg"
             android:text="Register"
             android:layout_width="match_parent"
-            android:textColor="@android:color/holo_purple"
+            android:textColor="@android:color/holo_blue_dark"
+            style="@android:style/Widget.Button"
+            android:textAllCaps="true"
             android:layout_height="wrap_content" />
 </LinearLayout>
